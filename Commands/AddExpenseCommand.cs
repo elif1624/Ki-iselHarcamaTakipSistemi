@@ -4,6 +4,22 @@ using Microsoft.Data.Sqlite;
 
 namespace ExpenseTracker.Commands
 {
+    /*
+     * Command tasarım kalıbının ConcreteCommand rolünü üstlenen sınıf:
+     * 1. Yeni bir harcama ekleme işlemini gerçekleştirir
+     * 2. Execute() metodunda:
+     *    - Harcama veritabanına eklenir
+     *    - İşlem kaydı tutulur
+     *    - Eklenen harcamanın ID'si saklanır (geri alma için)
+     * 3. Undo() metodunda:
+     *    - Eklenen harcama silinir
+     *    - İlgili işlem kaydı silinir
+     * 
+     * Bu sınıf sayesinde:
+     * - Harcama ekleme işlemi kapsüllenir
+     * - İşlem geri alınabilir
+     * - Veritabanı işlemleri ve işlem kaydı bir arada yönetilir
+     */
     public class AddExpenseCommand : ICommand
     {
         private readonly Expense _expense;

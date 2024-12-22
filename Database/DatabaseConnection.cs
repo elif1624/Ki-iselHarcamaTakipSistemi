@@ -2,6 +2,18 @@ using Microsoft.Data.Sqlite;
 
 namespace ExpenseTracker.Database
 {
+    /*
+     * Singleton tasarım kalıbı burada kullanılıyor çünkü:
+     * 1. Veritabanı bağlantısının uygulama genelinde tek bir örneğinin olması gerekiyor.
+     * 2. Bu örneğe global erişim sağlanması gerekiyor.
+     * 3. Birden fazla bağlantı örneği oluşturulması kaynak israfına ve tutarsızlıklara yol açabilir.
+     * 
+     * Nasıl çalışıyor:
+     * - private constructor ile dışarıdan örnek oluşturulması engelleniyor
+     * - static Instance property ile tek örneğe kontrollü erişim sağlanıyor
+     * - double-check locking pattern ile thread-safe implementasyon sağlanıyor
+     * - sealed class ile kalıtım engellenerek singleton garantileniyor
+     */
     public sealed class DatabaseConnection
     {
         private static DatabaseConnection? instance;

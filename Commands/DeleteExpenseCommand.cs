@@ -4,6 +4,22 @@ using Microsoft.Data.Sqlite;
 
 namespace ExpenseTracker.Commands
 {
+    /*
+     * Command tasarım kalıbının ConcreteCommand rolünü üstlenen sınıf:
+     * 1. Var olan bir harcamayı silme işlemini gerçekleştirir
+     * 2. Execute() metodunda:
+     *    - Silinecek harcamanın bilgileri saklanır (geri alma için)
+     *    - İşlem kaydı tutulur
+     *    - Harcama veritabanından silinir
+     * 3. Undo() metodunda:
+     *    - Silinen harcama geri yüklenir
+     *    - Silme işleminin kaydı silinir
+     * 
+     * Bu sınıf sayesinde:
+     * - Harcama silme işlemi kapsüllenir
+     * - Silinen harcamalar geri getirilebilir
+     * - Veritabanı tutarlılığı korunur
+     */
     public class DeleteExpenseCommand : ICommand
     {
         private readonly int _expenseId;

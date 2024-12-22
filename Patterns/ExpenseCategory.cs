@@ -1,5 +1,17 @@
 namespace ExpenseTracker.Patterns
 {
+    /*
+     * Composite tasarım kalıbının Composite rolünü üstlenen sınıf:
+     * 1. Alt bileşenleri (hem kategorileri hem de tekil harcamaları) içerebilir
+     * 2. Add() ve Remove() metodları ile alt bileşenlerin yönetimini sağlar
+     * 3. GetTotal() metodu ile tüm alt bileşenlerin toplamını hesaplar
+     * 4. Display() metodu ile hiyerarşik görüntülemeyi sağlar
+     * 
+     * Bu sayede:
+     * - Kategoriler iç içe oluşturulabilir (örn: Ana Kategori > Alt Kategori > Harcama)
+     * - Herhangi bir seviyedeki toplam harcama miktarı hesaplanabilir
+     * - Hiyerarşik yapı görsel olarak temsil edilebilir
+     */
     public class ExpenseCategory : ExpenseComponent
     {
         private readonly List<ExpenseComponent> _expenses = new();
